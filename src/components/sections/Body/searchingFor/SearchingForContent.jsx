@@ -116,7 +116,7 @@ export default class SearchingForContent extends React.Component {
                 results: await getResults(arr.query),
                 data: arr
             });
-            if (this.state.results) setTimeout(window.location.href = `#results`, 100);
+            if (this.state.results) setTimeout(window.location.hash = `#results`, 100);
         } catch (e) {
             await this.setState({ error: JSON.stringify(e) });
             return window.$('#searchingFor').appendTo('body').modal('show');

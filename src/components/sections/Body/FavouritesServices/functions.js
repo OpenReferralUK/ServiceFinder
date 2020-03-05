@@ -3,7 +3,7 @@ export const getHTMLServicesList = (items) => {
     var isIE = false || !!document.documentMode;
     var userAgent = window.navigator.userAgent;
     const URLparams = window.location;
-    const host = `${URLparams.protocol}//${URLparams.hostname}${URLparams.port ? `:${URLparams.port}/` : '/'}`;
+    const host = `${URLparams.protocol}//${URLparams.hostname}${URLparams.port ? `:${URLparams.port}/` : '/ServiceFinder/'}`;
     if (userAgent.match(/iPad/i) || userAgent.match(/iPhone/i) || isIE) {
         let stringHTML = `List of saved searches from Service Finder (on ${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}):\n\n`;
         items.map(item => {
@@ -15,7 +15,7 @@ export const getHTMLServicesList = (items) => {
         let stringHTML = `<div><h3 style="color: black"><b>List of saved searches from Service Finder (on ${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}):</b></h3><ul>`;
 
         items.map(item => {
-            let html = `<li><a href="${host}service/${item.id}">${item.name}</a></li>`
+            let html = `<li><a href="${host}service/${item.id}/${window.location.search}">${item.name}</a></li>`
             return stringHTML += html;
         });
         stringHTML += "</ul></div>"

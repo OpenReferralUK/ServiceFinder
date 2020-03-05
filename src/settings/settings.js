@@ -30,7 +30,7 @@ export const API_directions = {
 }
 
 export const Query_direction = async (circumstances = '', coverage = '', day = '', maximum_age = '', minimum_age = '', endTime = '', need = '', page = '', per_page = '', postcode = '', proximity = '', startTime = '', taxonomy_id = '', text = '', vocabulary = '') => {
-    let baseURL = config.OPERATIONAL_MODE !== 'FETCH_SERVICE_TYPE_SEPARATELY' ? API_URL_BASE + '/services/?' : API_URL_BASE + '/?';
+    let baseURL = config.OPERATIONAL_MODE !== 'FETCH_SERVICE_TYPE_SEPARATELY' ? API_URL_BASE + '/services/?' : API_URL_BASE + '/hservices/?';
     let urlFinal = baseURL;
     circumstances !== '' && await circumstances.map(cir => {
         return urlFinal += cir ? `circumstance=${cir}&` : '';

@@ -17,7 +17,7 @@ class Navbar extends React.Component {
     }
 
     moveToHome = () => {
-        this.props.history.push('/')
+        this.props.history.push('/' + window.location.search);
         window.$('#homeButton').toggleClass('active');
         if (window.$('#personaProfileTab').hasClass('active')) {
             window.$('#personaProfileTab').toggleClass('active').attr('aria-selected', false);
@@ -35,7 +35,7 @@ class Navbar extends React.Component {
 
     render() {
         return (
-            <nav className="p-2 navbar navbar-expand-lg navbar-light bg-light backgroundImage" style={{ backgroundImage: `url(/images/background/background${this.state.n}.png)` }} >
+            <nav className="p-2 navbar navbar-expand-lg navbar-light bg-light backgroundImage" style={{ backgroundImage: `url(${window.location.origin}/ServiceFinder/images/background/background${this.state.n}.png)` }} >
                 <a id="homeButton" className="mb-0 d-flex align-items-center" style={{ textDecoration: 'none', color: '#212529' }}
                     onClick={this.moveToHome}
                     data-toggle="tab" href="#homeWords" role="tab" aria-controls="homeWords" aria-selected="false">
@@ -56,7 +56,7 @@ class Navbar extends React.Component {
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav d-flex w-100">
                         <li className="nav-item d-flex align-items-center">
-                            <Link to="/about" className="nav-item nav-link" onClick={() => window.$('#navbarSupportedContent').collapse('hide')}>About</Link>
+                            <Link to={"/about/" + window.location.search} className="nav-item nav-link" onClick={() => window.$('#navbarSupportedContent').collapse('hide')}>About</Link>
                         </li>
                     </ul>
                 </div>

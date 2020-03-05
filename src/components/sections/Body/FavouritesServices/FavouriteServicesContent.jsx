@@ -107,7 +107,7 @@ class FavouriteServicesContent extends React.Component {
         items.map((item, i) => {
             return finalList = finalList + `${item.id}&`;
         });
-        this.props.history.push("/service-list/" + finalList);
+        this.props.history.push("/service-list/" + finalList + window.location.search);
     }
 
     copyShareLink = async () => {
@@ -122,7 +122,7 @@ class FavouriteServicesContent extends React.Component {
             }
         });
         let baseURL = window.location.origin;
-        let finalURL = `${baseURL}/service-list/${finalList}`;
+        let finalURL = `${baseURL}/service-list/${finalList}/${window.location.search}`;
         if (textToClipboard(finalURL)) {
             window.$('#textCopied').appendTo('body').modal('show');
         }

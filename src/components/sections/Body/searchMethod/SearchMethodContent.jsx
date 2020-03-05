@@ -23,7 +23,7 @@ export default class SearchMethodContent extends React.Component {
     handleSelect = (item) => {
         window.$(`#${item.value}`).collapse('show');
         window.$(`#${item.value}`).on('shown.bs.collapse', function () {
-            window.location.href = `#menuList`
+            window.location.hash = `#menuList`
         })
     }
 

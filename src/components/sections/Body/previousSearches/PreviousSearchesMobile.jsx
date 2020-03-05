@@ -16,7 +16,7 @@ export default class PreviousSearchesMobileComponent extends React.Component {
     handleSelect = (item) => {
         window.$(`#${item.value}`).collapse('show');
         window.$(`#${item.value}`).on('shown.bs.collapse', function () {
-            window.location.href = `#menuListHF`
+            window.location.hash = `#menuListHF`
         });
     }
 

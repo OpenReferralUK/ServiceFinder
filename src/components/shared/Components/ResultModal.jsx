@@ -68,7 +68,7 @@ class ResultModal extends React.Component {
 
     printButton = async () => {
         await this.closeModal();
-        this.props.history.push(`/service/${this.props.item.id}`);
+        this.props.history.push(`/service/${this.props.item.id}/${window.location.search}`);
     }
 
     closeModal = async () => {
@@ -107,7 +107,7 @@ class ResultModal extends React.Component {
                                                 }}
                                             >star</i>
                                         }
-                                        <Link style={{ color: '#212529' }} to={`/service/${this.props.item.id}`} onClick={this.printButton}>
+                                        <Link style={{ color: '#212529' }} to={`/service/${this.props.item.id}/${window.location.search}`} onClick={this.printButton}>
                                             < i className="material-icons mx-2 my-1 cursor-pointer">print</i>
                                         </Link>
                                         <i className="material-icons mx-2 my-1 cursor-pointer text-danger" onClick={this.closeModal}>close</i>

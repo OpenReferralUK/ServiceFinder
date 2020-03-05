@@ -25,8 +25,12 @@ export const getNeedsObject = async (id, actualData, data) => {
 export const getCircumstancesData = (data) => {
     const dataLevel1 = data.filter(item => item.parent === null);
     const childs = data.filter(item => item.parent !== null);
-    const dataLevel2 = childs.filter(item => item.parent.parent === null);
-    const dataLevel3 = childs.filter(item => item.parent.parent !== null);
+    var dataLevel2;
+    var dataLevel3;
+    if ("parent" in data[0]) {
+        dataLevel2 = childs.filter(item => item.parent.parent === null);
+        dataLevel3 = childs.filter(item => item.parent.parent !== null);
+    }
     return [dataLevel1, dataLevel2, dataLevel3];
 }
 
