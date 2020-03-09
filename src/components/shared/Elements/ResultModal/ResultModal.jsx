@@ -115,7 +115,7 @@ class ResultModal extends React.Component {
                                                     }}
                                                 >star</button>
                                             }
-                                            <Link style={{ color: '#212529' }} to={`/service/${this.state.item.id}`} onClick={this.closeModal}>
+                                            <Link style={{ color: '#212529' }} to={`/service/${this.state.item.id}/${window.location.search}`} onClick={this.closeModal}>
                                                 <i className="material-icons mx-2 my-1 cursor-pointer">print</i>
                                             </Link>
                                             <button className="border-0 bg-transparent  material-icons mx-2 my-1 cursor-pointer text-danger" onClick={this.closeModal}>close</button>

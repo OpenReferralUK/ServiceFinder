@@ -27,7 +27,7 @@ export const getCircumstancesData = (data) => {
     const childs = data.filter(item => item.parent !== null);
     var dataLevel2;
     var dataLevel3;
-    if ("parent" in data[0]) {
+    if ( (data && data !== []) && "parent" in data[0]) {
         dataLevel2 = childs.filter(item => item.parent.parent === null);
         dataLevel3 = childs.filter(item => item.parent.parent !== null);
     }

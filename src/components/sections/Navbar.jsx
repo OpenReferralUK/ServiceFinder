@@ -35,7 +35,7 @@ class Navbar extends React.Component {
 
     render() {
         return (
-            <nav className="p-2 navbar navbar-expand-lg navbar-light bg-light backgroundImage" style={{ backgroundImage: `url(/images/background/background${this.state.n}.png)` }} >
+            <nav className="p-2 navbar navbar-expand-lg navbar-light bg-light backgroundImage" style={{ backgroundImage: `url(/ServiceFinder/images/background/background${this.state.n}.png)` }} >
                 <a tabIndex="1" id="homeButton" className="mb-0 d-flex align-items-center" style={{ textDecoration: 'none', color: '#212529' }}
                     onClick={this.moveToHome}
                     data-toggle="tab" href="#homeWords" role="tab" aria-controls="homeWords">
