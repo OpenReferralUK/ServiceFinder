@@ -52,7 +52,7 @@ class FavouriteServicesContent extends React.Component {
         items.map((item, i) => {
             return finalList = finalList + `${item.id}&`;
         });
-        this.props.history.push("/service-list/" + finalList);
+        this.props.history.push("/service-list/" + finalList + "/" + window.location.search);
     }
 
     copyShareLink = async () => {

@@ -7,27 +7,29 @@ export default class MapInfoServiceComponent extends React.Component {
 
     componentDidMount() {
         try {
-            let location = this.props.item.service_at_locations[0].location;
-            let address = location.physical_addresses[0].address_1
-            let city = location.physical_addresses[0].city;
-            let postal_code = location.physical_addresses[0].postal_code.replace(' ', '')
-            let lat = location.latitude;
-            let lon = location.longitude;
-            console.log(this.props.item)
-            this.setState({
-                isLoaded: true,
-                address,
-                city,
-                postal_code,
-                lat, lon
-            });
+            if (this.props.item.service_at_locations.length !== 0) {
+                let location = this.props.item.service_at_locations[0].location;
+                let address = location.physical_addresses[0].address_1
+                let city = location.physical_addresses[0].city;
+                let postal_code = location.physical_addresses[0].postal_code.replace(' ', '')
+                let lat = location.latitude;
+                let lon = location.longitude;
+                console.log(this.props.item)
+                this.setState({
+                    isLoaded: true,
+                    address,
+                    city,
+                    postal_code,
+                    lat, lon
+                });
+            }
         } catch (e) {
             this.props.error(e);
         }
     }
 
     render() {
-        return (
+        return (this.props.item.service_at_locations.length !== 0 ?
             <>
                 <InfoServiceSection title="Directions">
                     <ul>
@@ -44,6 +46,7 @@ export default class MapInfoServiceComponent extends React.Component {
                     </div>
                 </InfoServiceSection>
             </>
+                : ""
         )
     }
 }
