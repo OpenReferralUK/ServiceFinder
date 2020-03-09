@@ -1,21 +1,16 @@
+import { css } from '@emotion/core';
 import React from 'react';
-import {
-  css
-} from '@emotion/core';
-import BeatLoader from 'react-spinners/BeatLoader'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-
-//Import Components
-import Navbar from './components/sections/Navbar';
-import Body from './components/sections/Body/Body';
-import {
-  getDataFromAPI,
-  refreshData,
-} from './functions/APIFunctions';
-import initial_data from './config';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import BeatLoader from 'react-spinners/BeatLoader';
 import AboutComponent from './components/sections/About/About';
-import InfoService from './components/sections/Services/General-InfoService';
+import Body from './components/sections/Body/Body';
+import Navbar from './components/sections/Navbar';
 import ServiceListComponent from './components/sections/ServiceList/ServiceListComponent';
+import InfoService from './components/sections/Services/General-InfoService';
+import initial_data from './config';
+import { getDataFromAPI, refreshData } from './functions/APIFunctions';
+import ResultModal from './components/shared/Elements/ResultModal/ResultModal';
+
 
 export default class App extends React.Component {
   interval;
@@ -49,6 +44,7 @@ export default class App extends React.Component {
   render() {
     return (
       <Router basename={process.env.PUBLIC_URL}>
+        <ResultModal />
         <Navbar />
         <Switch>
           <Route path="/" exact>

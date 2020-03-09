@@ -17,7 +17,7 @@ class Navbar extends React.Component {
     }
 
     moveToHome = () => {
-        this.props.history.push('/' + window.location.search);
+      this.props.history.push('/' + window.location.search);
         window.$('#homeButton').toggleClass('active');
         if (window.$('#personaProfileTab').hasClass('active')) {
             window.$('#personaProfileTab').toggleClass('active').attr('aria-selected', false);
@@ -35,16 +35,16 @@ class Navbar extends React.Component {
 
     render() {
         return (
-            <nav className="p-2 navbar navbar-expand-lg navbar-light bg-light backgroundImage" style={{ backgroundImage: `url(${window.location.origin}/ServiceFinder/images/background/background${this.state.n}.png)` }} >
-                <a id="homeButton" className="mb-0 d-flex align-items-center" style={{ textDecoration: 'none', color: '#212529' }}
+            <nav className="p-2 navbar navbar-expand-lg navbar-light bg-light backgroundImage" style={{ backgroundImage: `url(/images/background/background${this.state.n}.png)` }} >
+                <a tabIndex="1" id="homeButton" className="mb-0 d-flex align-items-center" style={{ textDecoration: 'none', color: '#212529' }}
                     onClick={this.moveToHome}
-                    data-toggle="tab" href="#homeWords" role="tab" aria-controls="homeWords" aria-selected="false">
-                    <img src={logo} className="d-inline-block mobile" alt="logo" width="50"/>
-                    <h5 className="mb-0">Service Finder</h5>
+                    data-toggle="tab" href="#homeWords" role="tab" aria-controls="homeWords">
+                    <img src={logo} className="d-inline-block mobile" alt="logo" width="50" />
+                    <h5 className="mb-0 title">Service Finder</h5>
                 </a>
                 <div className="navbar-toggler border-0 p-0">
                     <div className="d-flex">
-                        <button className="btn btn-outline-secondary mr-1" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <button tabIndex="2" className="btn btn-outline-secondary mr-1" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <span className="navbar-toggler-icon"></span>
                         </button>
                         <div className="d-flex justify-content-center ml-1">
@@ -56,7 +56,7 @@ class Navbar extends React.Component {
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav d-flex w-100">
                         <li className="nav-item d-flex align-items-center">
-                            <Link to={"/about/" + window.location.search} className="nav-item nav-link" onClick={() => window.$('#navbarSupportedContent').collapse('hide')}>About</Link>
+                            <Link to={"/about/" + window.location.search} tabIndex="3" className="nav-item nav-link" onClick={() => window.$('#navbarSupportedContent').collapse('hide')}>About</Link>
                         </li>
                     </ul>
                 </div>

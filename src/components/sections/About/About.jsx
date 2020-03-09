@@ -5,7 +5,7 @@ import store from '../../../Store/store';
 class AboutComponent extends React.Component {
 
     back = () => {
-        this.props.history.push('/')
+        this.props.history.goBack();
     }
 
     render() {
@@ -13,7 +13,7 @@ class AboutComponent extends React.Component {
             <>
                 <div className="container my-2 mt-3">
                     <div className="d-flex justify-content-start align-items-center w-100">
-                        {store.getState().tempSearches &&
+                        {store.getState().tempSearches.home &&
                             <div className="d-flex align-items-center cursor-pointer" onClick={this.back}>
                                 <i className="material-icons md-24 mr-3">arrow_back</i>
                             </div>

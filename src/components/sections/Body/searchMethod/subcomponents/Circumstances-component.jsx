@@ -1,15 +1,15 @@
 import React from 'react';
-
-import SearchMethodSection from '../SearchMethodSection/SearchMethodSection';
-import DropdownElement from '../../../../shared/Elements/DropdownElement';
-
+import { sortList } from '../../../../../functions/GeneralFunctions';
+import { getCircumstancesAction, getGenderAction } from '../../../../../Store/Actions/actions';
 import store from '../../../../../Store/store';
 import AlertModal from '../../../../shared/Elements/AlertModal';
+import DropdownElement from '../../../../shared/Elements/DropdownElement';
 import TagSelector from '../../../../shared/Elements/TagSelector';
-import { getCircumstancesData, getCircumstancesObject } from '../functions';
-import { getCircumstancesAction, getGenderAction } from '../../../../../Store/Actions/actions';
 import { getDataFromLocalStorage } from '../../personaProfile/functions';
-import { sortList } from '../../../../../functions/GeneralFunctions';
+import { getCircumstancesData, getCircumstancesObject } from '../functions';
+import SearchMethodSection from '../SearchMethodSection/SearchMethodSection';
+
+
 
 export default class CircumstancesComponent extends React.Component {
 
@@ -28,8 +28,6 @@ export default class CircumstancesComponent extends React.Component {
         this.unsubscribeStore = store.subscribe(this.updateStateFromStore);
         const data = getDataFromLocalStorage('circumstancesData');
         if (data.error) {
-            // await this.setState({ error: JSON.stringify(data.error) });
-            // return window.$('#circumstances').appendTo('body').modal('show');
             this.setState({
                 isLoaded: true
             })
@@ -138,7 +136,7 @@ export default class CircumstancesComponent extends React.Component {
 
     render() {
         return (
-            <SearchMethodSection id="cirSection" title="Choose Circumstances" description="Search by particular circumstance(s)." >
+            <SearchMethodSection id="cirSection" title="Choose particular circumstances" description="Select each term that is appropriate to the client." >
                 <AlertModal id="scircumstances" name="circumstances" error={this.state.error} />
                 {this.state.isLoaded &&
                     <>
@@ -147,7 +145,6 @@ export default class CircumstancesComponent extends React.Component {
                                 placeholder="Select group"
                                 horizontal={false}
                                 id='circumstances-group-lvl1'
-                                title="Circumstances LVL 1"
                                 default={this.state.groupSelected}
                                 data={this.state.cData1 && this.state.cData1.map(item => ({ value: item.id, label: item.name, original: item }))}
                                 class="col-sm-auto pl-0 w-100"

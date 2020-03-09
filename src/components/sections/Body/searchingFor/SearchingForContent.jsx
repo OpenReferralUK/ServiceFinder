@@ -1,27 +1,23 @@
 import React from 'react';
 import Select from "react-select";
-
+import { clearAllSelectedItems, getInteractedElements, getResults } from '../../../../functions/GeneralFunctions';
+import { getGenderAction, getSaveElementsAction, getSaveTemporalSearchesAction, getServiceTypesAction, getTextAction } from '../../../../Store/Actions/actions';
+import { SHOW_RESULTS } from '../../../../Store/Actions/types';
 import store from '../../../../Store/store';
-
-import { getDataWithText, tagChange } from './functions';
-import { getResults, getInteractedElements, clearAllSelectedItems } from '../../../../functions/GeneralFunctions';
-import ResultsContent from '../Results/ResultsContent';
-import AlertModal from '../../../shared/Elements/AlertModal';
-import { SAVE_ELEMENT } from '../../../../Store/Actions/types';
-import { getTextAction, getGenderAction, getServiceTypesAction } from '../../../../Store/Actions/actions';
-
+import { getDataWithText, getSearchByText, tagChange } from './functions';
+import PreviousSearchesContent from './previousSearches/PreviousSearchesContent';
+import ResultsContent from './Results/ResultsContent';
 
 export default class SearchingForContent extends React.Component {
 
     state = {
         ...this.getCurrentStateFromStore(),
-        isFetching: false,
+        showResults: false,
         data: {}
     };
 
     componentDidMount() {
         this.unsubscribeStore = store.subscribe(this.updateStateFromStore);
-        this.updateStateFromStore();
     }
 
     componentWillUnmount() {
@@ -39,16 +35,20 @@ export default class SearchingForContent extends React.Component {
         return interactedFinal
     }
 
-    updateStateFromStore = () => {
+    updateStateFromStore = async () => {
         const originaData = this.getCurrentStateFromStore();
         const currentState = getDataWithText(originaData);
+        const searchByText = getSearchByText(originaData);
         if (this.state !== currentState) {
             if (this.state.interacted) {
                 if (this.state.interacted.length !== currentState.length) {
-                    this.clearResults();
+                    // this.clearResults();
+                    await this.setState({
+                        showResults: false
+                    })
                 }
             }
-            this.setState({ interacted: currentState, originaData: originaData, focus: true });
+            await this.setState({ interacted: currentState, byText: searchByText.value, originaData: originaData, focus: true });
         }
     }
 
@@ -86,59 +86,47 @@ export default class SearchingForContent extends React.Component {
             return clearAllSelectedItems();
         }
         const storeAction = tagChange(value, action);
-        try {
-            await store.dispatch(getGenderAction({
-                value: '',
-                label: ''
-            }));
-            await store.dispatch(storeAction);
-        } catch (e) {
-            await this.setState({ error: JSON.stringify(e) });
-            return window.$('#searchingFor').appendTo('body').modal('show');
-        }
+        await store.dispatch(getGenderAction({
+            value: '',
+            label: ''
+        }));
+        await store.dispatch(storeAction);
     }
 
     searchClick = async (e, page = 1, perPage = 10) => {
         e.preventDefault();
         await this.setState({ isFetching: true });
-        this.clearResults();
-        try {
-            await store.dispatch(getTextAction(!this.state.byText ? '' : this.state.byText));
-            let arr = await getInteractedElements(this.state.originaData, page, perPage);
-            const action = {
-                type: SAVE_ELEMENT,
-                payload: arr
-            }
-            await store.dispatch(action);
-            await this.setState({
-                isFetching: false,
-                query: arr.query,
-                results: await getResults(arr.query),
-                data: arr
-            });
-            if (this.state.results) setTimeout(window.location.hash = `#results`, 100);
-        } catch (e) {
-            await this.setState({ error: JSON.stringify(e) });
-            return window.$('#searchingFor').appendTo('body').modal('show');
-        }
+        await store.dispatch(getTextAction(!this.state.byText ? '' : this.state.byText));
+        let interacted = await getInteractedElements(this.state.originaData, page, perPage);
+        await store.dispatch(getSaveElementsAction(interacted));
+        let results = await getResults(interacted.query);
+        this.saveResults(interacted, results);
+        this.gotoTopResults();
+    }
+
+    saveResults = (interacted, results) => {
+        window.$('#historySearches').collapse('hide');
+        store.dispatch(getSaveTemporalSearchesAction(results));
+        store.dispatch({ type: SHOW_RESULTS, payload: true });
+        this.setState({
+            isFetching: false,
+            query: interacted.query,
+            results,
+            data: interacted,
+        });
     }
 
     changePage = async (page = 1, perPage = 10) => {
         await this.setState({ isFetching: true });
-        let arr = await getInteractedElements(this.state.originaData, page, perPage);
-        this.clearResults();
-        await this.setState({
-            isFetching: false,
-            query: arr.query,
-            results: await getResults(arr.query),
-            data: arr
-        });
+        let interacted = await getInteractedElements(this.state.originaData, page, perPage);
+        let results = await getResults(interacted.query);
+        this.saveResults(interacted, results);
     }
 
-    clearResults = async () => {
-        this.setState({
-            results: undefined,
-        })
+    gotoTopResults = (time = 200) => {
+        window.$('html, body').animate({
+            scrollTop: window.$(`#resultsDiv`).offset().top - 90
+        }, time);
     }
 
     formatOptionLabel = (item) => (
@@ -150,17 +138,15 @@ export default class SearchingForContent extends React.Component {
     render() {
         return (
             <>
-                <AlertModal id="searchingFor" name="searching for action" error={this.state.error} />
-                < div className="d-flex justify-content-end w-100 mt-3">
+                <div className="d-flex justify-content-end w-100 mt-3">
                     <button
-                        type="button"
                         disabled={!((this.state.interacted && this.state.interacted.length > 0) || (this.state.byText))}
                         className={`btn ${((this.state.interacted && this.state.interacted.length > 0) || (this.state.byText)) ? ('btn-danger') : ('btn-secondary')}`}
                         onClick={this.clearItems}>
                         Clear data
                         </button>
                 </div>
-                <form onSubmit={this.searchClick}>
+                <form id="searchForm" onSubmit={this.searchClick}>
                     <div className="d-flex my-3">
                         <div className="d-flex flex-column col">
                             <div>
@@ -177,6 +163,7 @@ export default class SearchingForContent extends React.Component {
                             </div>
                             <small className="text-muted">You can also optionally search for text in the service name:</small>
                             <input
+                                id='searchInput'
                                 type="text"
                                 className="form-control"
                                 placeholder="Insert text"
@@ -184,12 +171,20 @@ export default class SearchingForContent extends React.Component {
                                 onChange={(e) => this.setState({ byText: e.target.value })} />
 
                         </div>
-                        <button type="type" className="btn btn-secondary col-auto d-flex align-items-center" onClick={this.searchClick}>
+                        <button type="submit" className="btn btn-success col-auto d-flex align-items-center" onClick={this.searchClick}>
                             <i className="material-icons p-0">search</i>
+                            <p className="mb-0">Search</p>
                         </button>
                     </div>
                 </form>
-                <ResultsContent firstTime={this.state.firstTime} isFetching={this.state.isFetching} paginacion={this.changePage} data={this.arr} results={this.state.results} interacted={this.state.interacted} clearResults={this.clearResults} />
+                <div id="resultsDiv">
+                    {store.getState().tempSearches.showResults &&
+                        <ResultsContent pagination={this.changePage} interacted={this.state.interacted} clearResults={() => store.dispatch({ type: SHOW_RESULTS, payload: false })} />
+                    }
+                </div>
+                <div>
+                    <PreviousSearchesContent />
+                </div>
             </>
         )
     }

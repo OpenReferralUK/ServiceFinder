@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
+import FavouritePanel from './Favourites/FavouritePanel';
 import BigPersonaProfile from './personaProfile/BigPersonaProfile';
-import BigSearchMethod from './searchMethod/BigSearchMethod';
-import PreviousSearches from './previousSearches/PreviousSearches';
 import SearchingFor from './searchingFor/SearchingFor';
-import FavouritesSearches from './FavouritesSearches/FavouritesSearches';
-import FavouritesServices from './FavouritesServices/FavouritesServices';
-import initial_data from '../../../config';
+import BigSearchMethod from './searchMethod/BigSearchMethod';
 
 export default class BigBody extends Component {
 
@@ -20,9 +17,7 @@ export default class BigBody extends Component {
                 </div>
                 <div className="container mb-3">
                     <div id="searches">
-                        <PreviousSearches />
-                        {initial_data.general.allowFavouritesSearches && <FavouritesSearches />}
-                        {initial_data.general.allowFavouriteServices && <FavouritesServices />}
+                        <FavouritePanel />
                     </div>
                     <div id="searching" className="accordion sticky position-sticky">
                         <SearchingFor />

@@ -1,16 +1,16 @@
 import React from 'react';
-
+import { sortList } from '../../../../../functions/GeneralFunctions';
+import { getNeedsAction } from '../../../../../Store/Actions/actions';
+import store from '../../../../../Store/store';
+import AlertModal from '../../../../shared/Elements/AlertModal';
 import DropdownElement from '../../../../shared/Elements/DropdownElement';
+import TagSelector from '../../../../shared/Elements/TagSelector';
+import { getDataFromLocalStorage } from '../../personaProfile/functions';
+import { getNeedsObject } from '../functions';
 import SearchMethodSection from '../SearchMethodSection/SearchMethodSection';
 
-import store from '../../../../../Store/store'
 
-import TagSelector from '../../../../shared/Elements/TagSelector';
-import { getNeedsObject } from '../functions';
-import { getNeedsAction } from '../../../../../Store/Actions/actions';
-import AlertModal from '../../../../shared/Elements/AlertModal';
-import { getDataFromLocalStorage } from '../../personaProfile/functions';
-import { sortList } from '../../../../../functions/GeneralFunctions';
+
 
 
 export default class NeedsComponent extends React.Component {
@@ -29,8 +29,6 @@ export default class NeedsComponent extends React.Component {
         this.unsubscribeStore = store.subscribe(this.updateStateFromStore);
         const data = getDataFromLocalStorage('needsData');
         if (data.error) {
-            // await this.setState({ error: JSON.stringify(data.error) });
-            // return window.$('#needs').appendTo('body').modal('show');
             this.setState({
                 isLoaded: true
             })

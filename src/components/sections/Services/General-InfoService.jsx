@@ -49,7 +49,7 @@ class InfoService extends React.Component {
     }
 
     back = () => {
-        this.props.history.push('/');
+        this.props.history.goBack();
     }
 
     render() {
@@ -73,9 +73,9 @@ class InfoService extends React.Component {
                             <>
                                 <div className="d-flex justify-content-between align-items-end">
                                     <div className="d-flex justify-content-start align-items-center w-100">
-                                        {store.getState().tempSearches &&
+                                        {store.getState().tempSearches.home &&
                                             <div className="d-flex align-items-center cursor-pointer" onClick={this.back}>
-                                                <i className="material-icons md-24 mr-3 no-print">arrow_back</i>
+                                                <i className="border-0 bg-transparent p-0 material-icons md-24 mr-3 no-print">arrow_back</i>
                                             </div>
                                         }
                                         <h3 className="mb-0">{this.state.item.name}</h3>

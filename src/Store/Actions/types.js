@@ -26,6 +26,11 @@ export const CLEAR_ALL_PREVIOUS_SEARCHES = 'CLEAR_ALL_PREVIOUS_SEARCHES'; // -> 
 export const CLEAR_PREVIOUS_SEARCHES_BY_ID = 'CLEAR_PREVIOUS_SEARCHES_BY_ID'; // -> Delete a previous search by id
 export const CLEAR_ALL_FAVOURITES = 'CLEAR_ALL_FAVOURITES'
 
+//Temporal Searches
+export const SAVE_TEMPORAL_SEARCHES = "SAVE_TEMPORAL_SEARCHES";
+export const SHOW_RESULTS = "SHOW_SEARCH_RESULTS";
+export const SAVE_PREVIOUS_PAGE = "SAVE_PREVIOUS_PAGE";
+
 //Favourites Searches
 export const ADD_FAVOURITE = 'ADD_FAVOURITES' // -> Saves a previous favourite search
 export const UPDATE_FAVOURITE = 'UPDATE_FAVOURITE' // -> Updates a previous favourite search
@@ -35,3 +40,7 @@ export const CLEAR_ALL_FAVOURITES_SEARCHES = 'CLEAR_ALL_FAVOURITES_SEARCHES';
 export const ADD_FAVOURITE_SERVICE = 'ADD_FAVOURITE_SERVICE'; // Saves a favourite service
 export const UPDATE_FAVOURITE_SERVICE = 'UPDATE_FAVOURITE_SERVICE'; // -> Update a favourite service
 export const CLEAR_ALL_FAVOURITES_SERVICES = 'CLEAR_ALL_FAVOURITES_SERVICES';
+
+//Modal
+export const SAVE_ITEM_ID = "SAVE_ITEM_ID";
+export const SAVE_BUTTON_FOR_MODAL = "SAVE_BUTTON_FOR_MODAL"

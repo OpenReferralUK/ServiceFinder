@@ -6,14 +6,16 @@ export default class BigSearchMethod extends React.Component {
 
     render() {
         return (
-            <form className="rounded m-2" data-parent="#accordion">
+            <div className="rounded m-2" data-parent="#accordion">
                 <div className="card searchMethod" id="searchMethod">
-                    <div className="card-header panel-title cursor-pointer" id="searchMethodHeading" data-toggle="collapse" data-target="#searchMethodCollapse" aria-expanded="false" aria-controls="searchMethodCollapse">
-                        <div className="d-flex flex-column">
-                            <h5 className="mb-0">Choose Search Method</h5>
-                            <p className="mb-0">Choose how you would like to search.</p>
-                        </div>
-                    </div>
+                    <button className="border-0 rounded-top p-0 card-header panel-title cursor-pointer" id="searchMethodHeading" data-toggle="collapse" data-target="#searchMethodCollapse" aria-expanded="false" aria-controls="searchMethodCollapse">
+                        <span className="btn_content" tabIndex="-1">
+                            <div className="d-flex flex-column align-items-start">
+                                <h5 className="mb-0">Add to Search</h5>
+                                <p className="mb-0">This will describe additional elements of the client search</p>
+                            </div>
+                        </span>
+                    </button>
 
                     <div id="searchMethodCollapse" className="collapse" aria-labelledby="personaProfilleHeading" data-parent="#mainAccordion">
                         <div className="card-body">
@@ -21,7 +23,7 @@ export default class BigSearchMethod extends React.Component {
                         </div>
                     </div>
                 </div>
-            </form >
+            </div >
         )
     }
 }

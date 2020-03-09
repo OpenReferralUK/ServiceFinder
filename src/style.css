@@ -26,6 +26,19 @@ code {
     monospace;
 }
 
+.btn_content {
+  padding-top: 13px;
+  padding-bottom: 13px;
+  padding-left: 20px;
+  cursor: pointer;
+  display: flex;
+}
+
+/* Fixing the Safari bug for `<button>`s overflow */
+.btn_content {
+  position: relative;
+}
+
 .navPrincipal {
   height: 5em;
 }
@@ -79,38 +92,61 @@ code {
   user-select: none;
 }
 
-.personaProfile>.card-header {
+/* .personaProfile>.card-header {
   background: rgb(255, 155, 155);
 }
 
 .personaProfile>div>.card-body {
-  /* box-shadow: inset 1px 1px 500px 0 rgb(255, 185, 185); */
   background: rgba(255, 155, 155, 0.2);
+} */
+
+.personaProfile>.card-header {
+  background: rgb(255, 151, 151);
 }
 
-.searchMethod>.card-header {
+.personaProfile>div>.card-body {
+  background: rgba(255, 151, 151, 0.2);
+}
+
+/* .searchMethod>.card-header {
   background: rgb(122, 184, 255);
 }
 
 .searchMethod>div>.card-body {
   background: rgba(122, 184, 255, 0.2);
+} */
+
+
+.searchMethod>.card-header {
+  background: rgb(83, 221, 240);
+}
+
+.searchMethod>div>.card-body {
+  background: rgba(83, 221, 240, 0.2);
 }
 
 .previousSearches>.card-header {
-  background: rgb(147, 246, 255);
+  background: rgb(255, 185, 106);
 }
 
 .previousSearches>div>.card-body {
-  background: rgba(147, 246, 255, 0.2);
+  background: rgba(255, 185, 106, 0.2);
 }
 
+.favouritePanel>.card-header {
+  background: rgb(255, 234, 119);
+}
+
+.favouritePanel>div>.card-body {
+  background: rgba(255, 234, 119, 0.2);
+}
 
 .favouritesSearches>.card-header {
-  background: rgb(255, 235, 119);
+  background: rgb(186, 216, 255);
 }
 
 .favouritesSearches>div>.card-body {
-  background: rgba(255, 235, 119, 0.2);
+  background: rgba(119, 178, 255, 0.2);
 }
 
 .favouritesServices>.card-header {
@@ -200,13 +236,13 @@ input[type=number] {
 .panel-title::after {
   content: "\f107";
   color: #333;
-  top: 0px;
+  top: 20px;
   position: absolute;
   font-family: "FontAwesome";
-  bottom: 0;
+  bottom: 20px;
   margin: auto;
   font-size: 24px;
-  height: 100%;
+  /* height: 100%;   */
   display: flex;
   right: 10px;
   transition: 0.3s;
@@ -217,13 +253,13 @@ input[type=number] {
 .results-title::after {
   content: "\f107";
   color: rgb(86, 90, 94);
-  top: 0px;
+  top: 15px;
   position: absolute;
   font-family: "FontAwesome";
-  bottom: 0;
+  bottom: 15px;
   margin: auto;
   font-size: 24px;
-  height: 100%;
+  /* height: 100%; */
   display: flex;
   left: 0;
   transition: 0.3s;
@@ -299,6 +335,23 @@ iframe.map {
   display: flex !important;
 }
 
+#MenuMobile,
+#MenuTablet {
+  z-index: 10;
+  width: 100% !important;
+}
+
+#MenuMobile.fixed,
+#MenuTablet.fixed {
+  position: fixed !important;
+  top: 0 !important;
+}
+
+#MenuMobile.flex,
+#MenuTablet.flex {
+  display: flex !important;
+}
+
 @media (max-width : 1200px) {
 
   .mobile-only {
@@ -331,9 +384,30 @@ iframe.map {
   .dropdown-menu {
     left: -150px;
   }
+
+  .previousSearches>.card-header,
+  .favouritesSearches>.card-header,
+  .favouritesServices>.card-header {
+    background: #F7F7F7;
+  }
+
+  .previousSearches>div>.card-body,
+  .favouritesSearches>div>.card-body,
+  .favouritesServices>div>.card-body {
+    background: none;
+  }
 }
 
 @media (max-width : 767px) {
+
+  .title {
+    font-size: 1.2em !important;
+  }
+
+  .searchMethodSection {
+    height: calc(100vh - 125px);
+  }
+
   .tablet-only {
     display: none !important;
   }
@@ -361,6 +435,11 @@ iframe.map {
 
 @media print {
   .no-print {
+    display: none !important;
+  }
+
+  .panel-title::after,
+  .results-title::after {
     display: none !important;
   }
 

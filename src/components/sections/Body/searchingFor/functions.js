@@ -1,13 +1,4 @@
-  import {
-      getAgeAction,
-      getPostcodeAction,
-      getProximityAction,
-      getAvailabilityAction,
-      getNeedsAction,
-      getCircumstancesAction,
-      getServiceTypesAction,
-      getGenderAction
-  } from '../../../../Store/Actions/actions';
+  import { getAgeAction, getAvailabilityAction, getCircumstancesAction, getGenderAction, getNeedsAction, getPostcodeAction, getProximityAction, getServiceTypesAction } from '../../../../Store/Actions/actions';
 
   export const tagChange = (values, oldData) => {
       switch (oldData.action) {
@@ -111,5 +102,24 @@
               }
           }
           return arrInteracted;
+      }
+  }
+
+  export const getSearchByText = (data) => {
+      let textObj = '';
+      if (data !== {}) {
+          for (const obj in data) {
+              if (data[obj].value) {
+                  if ((data[obj].category === 'text') && (data[obj].category !== 'gender')) {
+                      textObj = {
+                          category: data[obj].category,
+                          value: data[obj].value,
+                          label: `${data[obj].name}: ${data[obj].label}`,
+                          original: data[obj].original
+                      }
+                  }
+              }
+          }
+          return textObj;
       }
   }

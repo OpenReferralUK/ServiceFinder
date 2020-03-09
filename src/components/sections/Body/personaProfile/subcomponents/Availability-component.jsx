@@ -1,16 +1,12 @@
 import React from 'react';
-
-import ReactTable from 'react-table'
-import 'react-table/react-table.css'
-
-import { getDateArray } from '../functions';
-
-import DropdownElement from '../../../../shared/Elements/DropdownElement';
-
+import ReactTable from 'react-table';
+import 'react-table/react-table.css';
 import initial_data from '../../../../../config';
-import store from '../../../../../Store/store';
 import { getAvailabilityAction } from '../../../../../Store/Actions/actions';
+import store from '../../../../../Store/store';
 import AlertModal from '../../../../shared/Elements/AlertModal';
+import DropdownElement from '../../../../shared/Elements/DropdownElement';
+import { getDateArray } from '../functions';
 
 export default class AvailabilityComponent extends React.Component {
 
@@ -105,9 +101,9 @@ export default class AvailabilityComponent extends React.Component {
                                 minWidth: 75,
                                 maxWidth: 150,
                                 id: 'click-me-button',
-                                Cell: ({ original }) => (
+                                Cell: (data) => (
                                     <div className="d-flex justify-content-center">
-                                        <i className="material-icons md-24" style={{ cursor: 'pointer' }} onClick={() => this.deleteDay(original.value)}>indeterminate_check_box</i>
+                                        <button className="md-24 d-flex justify-content-center align-items-center" style={{ cursor: 'pointer', border: 'none', background: 'none' }} onClick={() => this.deleteDay(data.original.value)}><i className="material-icons">indeterminate_check_box</i></button>
                                     </div>
                                 )
                             }

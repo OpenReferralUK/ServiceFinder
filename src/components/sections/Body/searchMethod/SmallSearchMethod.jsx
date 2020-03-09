@@ -5,7 +5,9 @@ export default class SmallSearchMethod extends React.Component {
     render() {
         return (
             <>
-                <SearchMethodContent />
+                <div className="container mt-2">
+                    <SearchMethodContent />
+                </div>
             </>
         )
     }

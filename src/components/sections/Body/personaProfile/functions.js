@@ -1,9 +1,7 @@
 import jwt from 'jsonwebtoken';
-
 import initial_data from '../../../../config';
-import {
-    JWT
-} from '../../../../settings/settings';
+import { JWT } from '../../../../settings/settings';
+
 
 export const getDateArray = (data) => {
     const day = initial_data.persona_profile.days.day.filter(dayItem => dayItem.value === data.day)[0];

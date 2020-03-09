@@ -1,4 +1,4 @@
-import { UPDATE_FAVOURITE_SERVICE, ADD_FAVOURITE_SERVICE, CLEAR_ALL_FAVOURITES_SERVICES } from "../Actions/types";
+import { ADD_FAVOURITE_SERVICE, CLEAR_ALL_FAVOURITES_SERVICES, UPDATE_FAVOURITE_SERVICE } from "../Actions/types";
 
 const FavouritesServicesReducer = function (state = [], action) {
     let modState;
