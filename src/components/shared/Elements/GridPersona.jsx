@@ -6,7 +6,7 @@ import { getNeedsAction, getCircumstancesAction } from '../../../Store/Actions/a
 
 export default class GridPersona extends Component {
 
-    classListBase = "col-xl p-1 m-1 rounded card-header cursor-pointer text-nowrap d-flex justify-content-center";
+    classListBase = " border-0 col-xl p-1 m-1 rounded card-header cursor-pointer text-nowrap d-flex justify-content-center";
 
     handleClick = async (value) => {
         let arr = getItemsFromData(value);
@@ -24,14 +24,14 @@ export default class GridPersona extends Component {
             return (
                 <div >
                     <div className="row justify-content-center">
-                        <div className={this.classListBase} onClick={() => this.handleClick(0)} data-toggle="collapse" data-target="#personaProfileCollapse" aria-expanded="true" aria-controls="personaProfileCollapse">Lonely</div>
-                        <div className={this.classListBase} onClick={() => this.handleClick(1)} data-toggle="collapse" data-target="#personaProfileCollapse" aria-expanded="true" aria-controls="personaProfileCollapse">Older</div>
-                        <div className={this.classListBase} onClick={() => this.handleClick(2)} data-toggle="collapse" data-target="#personaProfileCollapse" aria-expanded="true" aria-controls="personaProfileCollapse">Unemployed</div>
+                        <button className={this.classListBase} onClick={() => this.handleClick(0)} data-toggle="collapse" data-target="#personaProfileCollapse" aria-expanded="true" aria-controls="personaProfileCollapse">Lonely</button>
+                        <button className={this.classListBase} onClick={() => this.handleClick(1)} data-toggle="collapse" data-target="#personaProfileCollapse" aria-expanded="true" aria-controls="personaProfileCollapse">Older</button>
+                        <button className={this.classListBase} onClick={() => this.handleClick(2)} data-toggle="collapse" data-target="#personaProfileCollapse" aria-expanded="true" aria-controls="personaProfileCollapse">Unemployed</button>
                     </div>
                     <div className="row justify-content-center">
-                        <div className={this.classListBase} onClick={() => this.handleClick(3)} data-toggle="collapse" data-target="#personaProfileCollapse" aria-expanded="true" aria-controls="personaProfileCollapse">Low income</div>
-                        <div className={this.classListBase} onClick={() => this.handleClick(4)} data-toggle="collapse" data-target="#personaProfileCollapse" aria-expanded="true" aria-controls="personaProfileCollapse">Young family</div>
-                        <div className={this.classListBase} onClick={() => this.handleClick(5)} data-toggle="collapse" data-target="#personaProfileCollapse" aria-expanded="true" aria-controls="personaProfileCollapse">Disabled person</div>
+                        <button className={this.classListBase} onClick={() => this.handleClick(3)} data-toggle="collapse" data-target="#personaProfileCollapse" aria-expanded="true" aria-controls="personaProfileCollapse">Low income</button>
+                        <button className={this.classListBase} onClick={() => this.handleClick(4)} data-toggle="collapse" data-target="#personaProfileCollapse" aria-expanded="true" aria-controls="personaProfileCollapse">Young family</button>
+                        <button className={this.classListBase} onClick={() => this.handleClick(5)} data-toggle="collapse" data-target="#personaProfileCollapse" aria-expanded="true" aria-controls="personaProfileCollapse">Disabled person</button>
                     </div>
                 </div>
             )

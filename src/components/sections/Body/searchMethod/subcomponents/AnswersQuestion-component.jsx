@@ -1,9 +1,9 @@
 import React from 'react';
-
-import SearchMethodSection from '../SearchMethodSection/SearchMethodSection';
-import { getItemsFromQA, removeDuplicates } from '../functions';
-import store from '../../../../../Store/store';
 import { getNeedsAction } from '../../../../../Store/Actions/actions';
+import store from '../../../../../Store/store';
+import { getItemsFromQA, removeDuplicates } from '../functions';
+import SearchMethodSection from '../SearchMethodSection/SearchMethodSection';
+
 
 export default class AnswersQuestionComponent extends React.Component {
 
@@ -75,7 +75,7 @@ export default class AnswersQuestionComponent extends React.Component {
 
     render() {
         return (
-            <SearchMethodSection id="aqSection" title="Ask a question" description="What is the main area of interest?" >
+            <SearchMethodSection id="aqSection" title="Ask a question" description="What do you enjoy?" >
                 {this.state.isLoaded &&
                     <>
                         <div className="mt-1 card-grid row">

@@ -2,7 +2,6 @@ import React from 'react';
 
 export default class AlertModal extends React.Component {
     render() {
-        // window.$(`#${this.props.id}`).appendTo('body');
         return (
             <div className="modal fade" id={this.props.id} style={{ zIndex: '5000' }} tabIndex="-1" role="dialog" aria-labelledby="ageAlertModalLabel" aria-hidden="true">
                 <div className="modal-dialog" role="document">

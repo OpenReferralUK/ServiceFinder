@@ -19,7 +19,7 @@ const initial_data = {
                 "label": "3 Miles"
             },
             {
-                "value": 4,
+                "value": -1,
                 "label": "Other distance..."
             }
         ],

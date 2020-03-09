@@ -1,4 +1,4 @@
-import {UPDATE_FAVOURITE, ADD_FAVOURITE, CLEAR_ALL_FAVOURITES_SEARCHES } from "../Actions/types";
+import { ADD_FAVOURITE, CLEAR_ALL_FAVOURITES_SEARCHES, UPDATE_FAVOURITE } from "../Actions/types";
 
 const FavouritesSearchesReducer = function (state = [], action) {
     switch (action.type) {

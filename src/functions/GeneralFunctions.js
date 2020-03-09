@@ -19,7 +19,8 @@ import {
     getGenderAction,
     getNeedsAction,
     getCircumstancesAction,
-    getAvailabilityAction
+    getAvailabilityAction,
+    getTextAction
 } from '../Store/Actions/actions';
 
 //________________________________________________________________Functions
@@ -38,6 +39,7 @@ export const clearAllSelectedItems = async () => {
         await store.dispatch(getNeedsAction([]));
         await store.dispatch(getCircumstancesAction([]));
         await store.dispatch(getAvailabilityAction([]));
+        await store.dispatch(getTextAction(''));
         return true;
     } catch (e) {
         console.log(e);
@@ -128,7 +130,7 @@ export const getInteractedElements = async (interacted, page, perPage) => {
 
     const date = new Date();
     const hour = `${date.getHours() < 10 ? `0${date.getHours()}` : date.getHours()}:${date.getMinutes() < 10 ? `0${date.getMinutes()}` : date.getMinutes()}`;
-    const dateTime = `${date.getDay() < 10 ? `0${date.getDay()}` : date.getDay()}/${(date.getMonth() + 1) < 10 ? `0${date.getMonth()+1}` : date.getMonth()+1}/${date.getFullYear()}`;
+    const dateTime = `${date.getDay() < 10 ? `0${date.getDay()}` : date.getDay()}/${(date.getMonth() + 1) < 10 ? `0${date.getMonth() + 1}` : date.getMonth() + 1}/${date.getFullYear()}`;
 
     return {
         favourite: false,

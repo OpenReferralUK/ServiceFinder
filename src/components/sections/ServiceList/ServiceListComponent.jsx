@@ -4,8 +4,9 @@ import BeatLoader from 'react-spinners/BeatLoader'
 import { css } from '@emotion/core';
 import { API_directions } from '../../../settings/settings';
 import Axios from 'axios';
-import ResultModal from '../../shared/Components/ResultModal';
+// import ResultModal from '../../shared/Components/ResultModal';
 import store from '../../../Store/store';
+import { getSaveItemIdAction, getSaveButtonForModal } from '../../../Store/Actions/actions';
 
 class ServiceListComponent extends React.Component {
 
@@ -45,9 +46,12 @@ class ServiceListComponent extends React.Component {
     }
 
     showModal = async (item) => {
-        await window.$("#detailsFavItem").appendTo('body').modal('show');
-        await this.setState({ item });
-        await this.setState({ isModalLoaded: true });
+        await store.dispatch(getSaveItemIdAction(item.id));
+        store.dispatch(getSaveButtonForModal('favourites'));
+        window.$('#serviceModal').modal('show');
+        // await window.$("#detailsFavItem").appendTo('body').modal('show');
+        // await this.setState({ item });
+        // await this.setState({ isModalLoaded: true });
     }
 
     closeModal = async () => {
@@ -59,7 +63,7 @@ class ServiceListComponent extends React.Component {
 
 
     back = () => {
-        this.props.history.push('/');
+        this.props.history.goBack();
     }
 
     render() {
@@ -70,9 +74,9 @@ class ServiceListComponent extends React.Component {
                         <>
                             <div className="d-flex justify-content-between w-100">
                                 <div className="d-flex justify-content-start align-items-center w-100">
-                                    {store.getState().tempSearches &&
+                                    {store.getState().tempSearches.home &&
                                         <div className="d-flex align-items-center cursor-pointer" onClick={this.back}>
-                                            <i className="material-icons md-24 mr-3 no-print">arrow_back</i>
+                                            <i className="border-0 bg-transparent p-0 material-icons md-24 mr-3 no-print">arrow_back</i>
                                         </div>
                                     }
                                     <h3 className="mb-0">Service List</h3>
@@ -83,18 +87,20 @@ class ServiceListComponent extends React.Component {
                             </div>
                             <hr />
                             <div id="favItemsGeneral">
-                                <ResultModal id="detailsFavItem" data={this.state.item} isModalLoaded={this.state.isModalLoaded} item={this.state.item} closeModal={this.closeModal} />
+                                {/* <ResultModal id="detailsFavItem" data={this.state.item} isModalLoaded={this.state.isModalLoaded} item={this.state.item} closeModal={this.closeModal} /> */}
                                 <div className="accordion mb-4" id="accordionFavourites">
                                     {this.state.items &&
                                         this.state.items.map((item, i) => (
                                             <div className="card rounded" key={i}>
                                                 <div className="card-header collapsed" id={item.id}>
                                                     <div className="d-flex justify-content-between w-100">
-                                                        <div className="d-flex align-items-center results-title cursor-pointer" data-toggle="collapse" data-target={`#TabFavourites${i}`} aria-expanded="false" aria-controls={`TabFavourites${i}`}>
-                                                            <p className="mb-0 ml-4">
-                                                                {item.name}
-                                                            </p>
-                                                        </div>
+                                                        <button className="border-0 bg-transparent p-0 d-flex align-items-center results-title cursor-pointer" data-toggle="collapse" data-target={`#TabFavourites${i}`} aria-expanded="false" aria-controls={`TabFavourites${i}`}>
+                                                            <span className="btn-content" tabIndex="-1">
+                                                                <p className="mb-0 ml-4">
+                                                                    {item.name}
+                                                                </p>
+                                                            </span>
+                                                        </button>
                                                         <div>
                                                             <div className="w-100 d-flex justify-content-end">
                                                                 <button type="button" className=" no-print mr-1 btn btn-info btn-sm d-flex justify-content-center" onClick={() => this.showModal(item)}>

@@ -1,16 +1,16 @@
 import React from 'react';
-
 import { clearAllSelectedItems } from '../../../../functions/GeneralFunctions';
-
+import store from '../../../../Store/store';
+import PostcodeComponent from '../../../shared/Components/Postcode-component';
+import ProximityComponent from '../../../shared/Components/Proximity-component';
+import SearchButton from '../../../shared/Elements/SearchButton';
 import AgeComponent from './subcomponents/Age-component';
 import AvailabilityComponent from './subcomponents/Availability-component';
 import CircumstancesComponent from './subcomponents/Circumstances-component';
-import ProximityComponent from '../../../shared/Components/Proximity-component';
-import PostcodeComponent from '../../../shared/Components/Postcode-component';
 import GenderComponent from './subcomponents/Gender-component';
 import NeedsComponent from './subcomponents/Needs-component';
-import store from '../../../../Store/store';
-import SearchButton from '../../../shared/Elements/SearchButton';
+
+
 
 export default class PersonaPorfileContent extends React.Component {
 
@@ -55,39 +55,46 @@ export default class PersonaPorfileContent extends React.Component {
                         Clear data
                     </button>
                 </div>
-                <div className="row mb-2">
-                    <div className="col">
-                        <AgeComponent />
+                <div className="border rounded my-3 shadow-sm">
+                    <div className="row my-2">
+                        <div className="col">
+                            <AgeComponent />
+                        </div>
+                    </div>
+                    <div className="row my-2">
+                        <div className="col-md-auto w-100">
+                            <GenderComponent />
+                        </div>
                     </div>
                 </div>
-                <div className="row my-2">
-                    <div className="col-md-auto w-100">
-                        <PostcodeComponent />
+
+                <div className="border rounded my-3 shadow-sm">
+                    <div className="row my-2">
+                        <div className="col-md-auto w-100">
+                            <PostcodeComponent />
+                        </div>
+                    </div>
+                    <div className="row my-2">
+                        <div className="col-md-auto w-100">
+                            <ProximityComponent />
+                        </div>
                     </div>
                 </div>
-                <div className="row my-2">
-                    <div className="col-md-auto w-100">
-                        <ProximityComponent />
+                <div className="border rounded my-3 shadow-sm">
+                    {/* <div className="row mt-2 mx-1">
+                        <div className="col-md-auto w-100">
+                            <NeedsComponent />
+                        </div>
                     </div>
-                </div>
-                <div className="row my-2">
-                    <div className="col-md-auto w-100">
-                        <GenderComponent />
-                    </div>
-                </div>
-                <div className="row mt-2 mx-1">
-                    <div className="col-md-auto w-100">
-                        <NeedsComponent />
-                    </div>
-                </div>
-                <div className="row mx-1">
-                    <div className="col-md-auto w-100">
-                        <CircumstancesComponent />
-                    </div>
-                </div>
-                <div className="row my-2">
-                    <div className="col-md-auto w-100">
-                        <AvailabilityComponent />
+                    <div className="row mx-1">
+                        <div className="col-md-auto w-100">
+                            <CircumstancesComponent />
+                        </div>
+                    </div> */}
+                    <div className="row mb-2">
+                        <div className="col-md-auto w-100">
+                            <AvailabilityComponent />
+                        </div>
                     </div>
                 </div>
             </>

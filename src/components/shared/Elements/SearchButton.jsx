@@ -1,8 +1,12 @@
 import React from 'react';
+import store from '../../../Store/store';
+import { getSavePreviousPageAction } from '../../../Store/Actions/actions';
 
 export default class SearchButton extends React.Component {
     showSearches = () => {
-        window.$('#myTab li:last-child a').tab('show')
+        store.dispatch(getSavePreviousPageAction('Search'));
+        window.$('#MenuMobile li:last-child a').tab('show')
+        window.$('#MenuTablet li:last-child a').tab('show')
     }
     render() {
         return (

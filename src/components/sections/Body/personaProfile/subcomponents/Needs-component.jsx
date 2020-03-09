@@ -1,13 +1,11 @@
 import React from 'react';
-
-import store from '../../../../../Store/store';
-
-import { getNeedsAction } from '../../../../../Store/Actions/actions';
-
-import TagSelector from '../../../../shared/Elements/TagSelector';
-import AlertModal from '../../../../shared/Elements/AlertModal';
-import { getDataFromLocalStorage } from '../functions';
+import { components } from 'react-select';
 import { sortList } from '../../../../../functions/GeneralFunctions';
+import { getNeedsAction } from '../../../../../Store/Actions/actions';
+import store from '../../../../../Store/store';
+import AlertModal from '../../../../shared/Elements/AlertModal';
+import TagSelector from '../../../../shared/Elements/TagSelector';
+import { getDataFromLocalStorage } from '../functions';
 
 export default class NeedsComponent extends React.Component {
 
@@ -21,8 +19,6 @@ export default class NeedsComponent extends React.Component {
         this.unsubscribeStore = store.subscribe(this.updateStateFromStore);
         const data = getDataFromLocalStorage('needsData');
         if (data.error) {
-            // this.setState({ error: JSON.stringify(data.error) });
-            // return window.$('#needs').appendTo('body').modal('show');
             this.setState({
                 isLoaded: true
             })
@@ -62,10 +58,20 @@ export default class NeedsComponent extends React.Component {
     }
 
     render() {
+        const DropdownIndicator = props => {
+            return (
+                components.DropdownIndicator && (
+                    <components.DropdownIndicator {...props}>
+                        <i className="material-icons">add</i>
+                    </components.DropdownIndicator>
+                )
+            );
+        };
         return (
             <>
                 <AlertModal name="needs" id="needs" error={this.state.error} />
-                {this.state.isLoaded &&
+                {
+                    this.state.isLoaded &&
                     <TagSelector
                         title="Needs:"
                         id="needsSelector"
@@ -76,6 +82,7 @@ export default class NeedsComponent extends React.Component {
                         isSearchable={true}
                         placeholder="Select needs"
                         onChange={this.addNeed}
+                        components={{ DropdownIndicator }}
                     />
                 }
             </>

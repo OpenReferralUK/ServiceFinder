@@ -1,11 +1,10 @@
 import React from 'react';
 import Select from "react-select";
-
+import { sortList } from '../../../../../functions/GeneralFunctions';
+import { getCircumstancesAction, getGenderAction } from '../../../../../Store/Actions/actions';
 import store from '../../../../../Store/store';
 import AlertModal from '../../../../shared/Elements/AlertModal';
-import { getCircumstancesAction, getGenderAction } from '../../../../../Store/Actions/actions';
 import { getDataFromLocalStorage } from '../functions';
-import { sortList } from '../../../../../functions/GeneralFunctions';
 
 export default class GenderComponent extends React.Component {
 
@@ -15,8 +14,6 @@ export default class GenderComponent extends React.Component {
         this.unsubscribeStore = store.subscribe(this.updateStateFromStore);
         const data = getDataFromLocalStorage('genderData');
         if (data.error) {
-            // await this.setState({ error: JSON.stringify(data.error) });
-            // return window.$('#gender').appendTo('body').modal('show');
             this.setState({
                 isLoaded: true
             })

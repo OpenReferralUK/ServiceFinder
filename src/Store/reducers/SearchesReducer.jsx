@@ -1,4 +1,4 @@
-import { UPDATE_SEARCH, CLEAR_ALL_PREVIOUS_SEARCHES, CLEAR_PREVIOUS_SEARCHES_BY_ID, SAVE_ELEMENT, CLEAR_ALL_FAVOURITES } from "../Actions/types";
+import { CLEAR_ALL_FAVOURITES, CLEAR_ALL_PREVIOUS_SEARCHES, CLEAR_PREVIOUS_SEARCHES_BY_ID, SAVE_ELEMENT, UPDATE_SEARCH } from "../Actions/types";
 
 const SearchReducer = function (state = [], action) {
     switch (action.type) {

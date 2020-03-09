@@ -13,7 +13,12 @@ import {
     ADD_FAVOURITE,
     ADD_FAVOURITE_SERVICE,
     UPDATE_FAVOURITE_SERVICE,
-    SAVE_TEXT
+    SAVE_TEXT,
+    SAVE_TEMPORAL_SEARCHES,
+    SAVE_ELEMENT,
+    SAVE_PREVIOUS_PAGE,
+    SAVE_ITEM_ID,
+    SAVE_BUTTON_FOR_MODAL
 } from "./types";
 
 /**
@@ -238,3 +243,40 @@ export const getTextAction = (value) => {
     }
     return action;
 }
+
+/**
+ * To save the searched elements
+ * @param {[{}]} elements 
+ */
+export const getSaveElementsAction = (elements) => ({
+    type: SAVE_ELEMENT,
+    payload: elements
+})
+
+/**
+ * 
+ * @param {[{}]} results 
+ */
+export const getSaveTemporalSearchesAction = (results) => ({
+    type: SAVE_TEMPORAL_SEARCHES,
+    payload: results
+})
+
+/**
+ * Returns the action to save the previous page
+ * @param {string} page 
+ */
+export const getSavePreviousPageAction = (page) => ({
+    type: SAVE_PREVIOUS_PAGE,
+    payload: page
+})
+
+export const getSaveItemIdAction = id => ({
+    type: SAVE_ITEM_ID,
+    payload: id
+})
+
+export const getSaveButtonForModal = button => ({
+    type: SAVE_BUTTON_FOR_MODAL,
+    payload: button
+})

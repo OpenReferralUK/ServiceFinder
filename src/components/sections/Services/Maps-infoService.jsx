@@ -13,6 +13,7 @@ export default class MapInfoServiceComponent extends React.Component {
             let postal_code = location.physical_addresses[0].postal_code.replace(' ', '')
             let lat = location.latitude;
             let lon = location.longitude;
+            console.log(this.props.item)
             this.setState({
                 isLoaded: true,
                 address,
