@@ -1,3 +1,5 @@
+**This is the open source Service Finder developed by VidaVia to work with Open Referral UK API feeds. This code was further developed as a product maintained separately by [Digital CoProduction](https://www.digitalcoproduction.co.uk/).**
+
 # Service Finder
 
 _Service Finder is targeted at any public or third sector frontline worker looking to find services that might support the needs and circumstances of a citizen. It accesses open data collected to meet the data standard of the [OpenReferral community](https://openreferral.org)_
